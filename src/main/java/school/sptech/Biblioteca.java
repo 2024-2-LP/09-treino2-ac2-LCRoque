@@ -26,21 +26,6 @@ public class Biblioteca {
             livros.add(livro);
     }
 
-    public void removerLivroPorTitulo(String titulo){
-        if(titulo == null || titulo.isBlank()){
-            throw new ArgumentoInvalidoException("Livro Inválido");
-        }
-            for (int i = 0; i < livros.size(); i++) {
-                Livro livroAtual = livros.get(i);
-
-                if(livroAtual.getTitulo().equalsIgnoreCase(titulo)){
-                    livros.remove(livroAtual);
-                    return;
-                }
-            }
-        throw new LivroNaoEncontradoException("Livro não encontrado");
-        }
-
     public Livro buscarLivroPorTitulo(String titulo){
         if(titulo == null || titulo.isBlank()){
             throw new ArgumentoInvalidoException("Titulo inválido");
@@ -54,6 +39,14 @@ public class Biblioteca {
         }
         throw new LivroNaoEncontradoException("Livro não encontrado");
     }
+
+    public void removerLivroPorTitulo(String titulo){
+        if(titulo == null || titulo.isBlank()){
+            throw new ArgumentoInvalidoException("Livro Inválido");
+        }
+         Livro livroAtual =  buscarLivroPorTitulo(titulo);
+         livros.remove(livroAtual);
+        }
 
     public Integer contarLivros(){
         return livros.size();
